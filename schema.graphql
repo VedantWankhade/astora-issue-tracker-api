@@ -1,0 +1,40 @@
+"Toned down issue, used as inputs, without api generated values."
+input IssueInputs {
+  title: String!
+  "Optional, if not provided, defaults to 'New'"
+  status: StatusType = New
+  owner: String
+  effort: Int
+  due: GraphQLDate
+}
+
+scalar GraphQLDate
+
+enum StatusType {
+  New
+  Assigned
+  Fixed
+  Closed
+}
+
+type Issue {
+  _id: ID!
+  id: Int!
+  title: String!
+  status: StatusType!
+  owner: String
+  effort: Int
+  created: GraphQLDate!
+  due: GraphQLDate
+}
+
+### top level declarations
+
+type Query {
+  about: String!
+  issueList: [Issue!]!
+}
+type Mutation {
+  setAboutMessage(message: String!): String
+  issueAdd(issue: IssueInputs!): Issue!
+}

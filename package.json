@@ -1,0 +1,34 @@
+{
+  "name": "astora-issue-tracker-api",
+  "version": "1.0.0",
+  "description": "API for astora issue tracker",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon -e js, graphql ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VedantWankhade/astora-issue-tracker-api.git"
+  },
+  "keywords": [
+    "issue-tracker",
+    "bug-tracker"
+  ],
+  "author": "VedantWankhade",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "apollo-server-express": "^2.21.1",
+    "express": "^4.17.1",
+    "graphql": "^0.13.2",
+    "mongodb": "^3.6.4",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {
+    "prettier": "2.2.1"
+  },
+  "bugs": {
+    "url": "https://github.com/VedantWankhade/astora-issue-tracker-api/issues"
+  },
+  "homepage": "https://github.com/VedantWankhade/astora-issue-tracker-api#readme"
+}
