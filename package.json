@@ -26,6 +26,9 @@
     "nodemon": "^2.0.7"
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.22.1",
     "prettier": "2.2.1"
   },
   "bugs": {
