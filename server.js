@@ -1,12 +1,13 @@
 // fs to read from files
 const fs = require("fs");
+require("dotenv").config();
 const express = require("express");
 const { MongoClient } = require("mongodb");
 const { GraphQLScalarType, Kind } = require("graphql");
 const { ApolloServer, UserInputError } = require("apollo-server-express");
 
 // local database api url
-const DB_URL = "mongodb://localhost/astora-db";
+const DB_URL = process.env.DB_URL || "mongodb://localhost/astora-db";
 let db;
 
 async function connectToDB() {
@@ -110,11 +111,15 @@ const app = express();
 // apply graphql api middleware to express app at path /api
 server.applyMiddleware({ app, path: "/api" });
 
+const API_SERVER_PORT = process.env.API_SERVER_PORT || 3000;
+
 (async function () {
   try {
     await connectToDB();
-    app.listen(3000, function () {
-      console.log("API server started at port http://localhost:3000");
+    app.listen(API_SERVER_PORT, function () {
+      console.log(
+        `API server started at port http://localhost:${API_SERVER_PORT}`
+      );
     });
   } catch (err) {
     console.log(err);
