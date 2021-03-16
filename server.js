@@ -108,8 +108,11 @@ const server = new ApolloServer({
 });
 
 const app = express();
+const enableCORS = (process.env.ENABLE_CORS || "true") === "true";
+console.log("CORS setting:", enableCORS);
+
 // apply graphql api middleware to express app at path /api
-server.applyMiddleware({ app, path: "/api" });
+server.applyMiddleware({ app, path: "/api", cors: enableCORS });
 
 const API_SERVER_PORT = process.env.API_SERVER_PORT || 3000;
 
