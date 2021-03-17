@@ -1,9 +1,11 @@
 const { UserInputError } = require('apollo-server-express');
 const { getDB, getNextSequence } = require('./db');
 
-async function list() {
+async function list(_, { status }) {
   const db = getDB();
-  const issues = await db.collection('issues').find({}).toArray();
+  const filter = {};
+  if (status) filter.status = status;
+  const issues = await db.collection('issues').find(filter).toArray();
   return issues;
 }
 
