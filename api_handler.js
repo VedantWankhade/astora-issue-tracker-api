@@ -9,7 +9,7 @@ const issue = require('./issue');
 // fields to serve the api calls
 const apiResolvers = {
   Query: {
-    about: about.getMessage(),
+    about: about.getMessage,
     // returns the list of issues as a graphQL type [Issue]
     issueList: issue.list,
   },
@@ -37,4 +37,4 @@ function installHandler(app) {
   server.applyMiddleware({ app, path: '/api', cors: enableCors });
 }
 
-module.exports = installHandler;
+module.exports = { installHandler };

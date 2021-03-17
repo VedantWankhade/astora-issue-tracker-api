@@ -4,9 +4,9 @@ const { MongoClient } = require('mongodb');
 let db;
 
 async function connectToDB() {
-  const dbClient = await new MongoClient(DB_URL, { useNewUrlParser: true });
   // local database api url
   const DB_URL = process.env.DB_URL || 'mongodb://localhost/astora-db';
+  const dbClient = await new MongoClient(DB_URL, { useNewUrlParser: true });
   await dbClient.connect();
   console.log('Connected to database api at ', DB_URL);
   db = dbClient.db();
