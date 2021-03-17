@@ -10,6 +10,7 @@ const issue = require('./issue');
 const apiResolvers = {
   Query: {
     about: about.getMessage,
+    issue: issue.get,
     // returns the list of issues as a graphQL type [Issue]
     issueList: issue.list,
   },
