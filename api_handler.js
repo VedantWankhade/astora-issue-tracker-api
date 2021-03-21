@@ -18,6 +18,7 @@ const apiResolvers = {
     setAboutMessage: about.setMessage,
     // adds issue to the issuesDB list, takes Issue graphQL type
     issueAdd: issue.add,
+    issueUpdate: issue.update,
   },
   GraphQLDate,
 };

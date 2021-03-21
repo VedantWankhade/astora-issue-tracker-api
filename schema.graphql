@@ -9,6 +9,18 @@ input IssueInputs {
   description: String
 }
 
+"""
+Inputs for issueUpdate: all are optional. Whichever is specified will be set to the given value, undefined will remin untouched
+"""
+input IssueUpdateInputs {
+  title: String
+  status: StatusType
+  owner: String
+  effort: Int
+  due: GraphQLDate
+  description: String
+}
+
 scalar GraphQLDate
 
 enum StatusType {
@@ -40,4 +52,5 @@ type Query {
 type Mutation {
   setAboutMessage(message: String!): String
   issueAdd(issue: IssueInputs!): Issue!
+  issueUpdate(id: Int!, changes: IssueUpdateInputs!): Issue!
 }

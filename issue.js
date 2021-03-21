@@ -36,6 +36,18 @@ function validate(issue) {
   }
 }
 
+async function update(_, { id, changes }) {
+  const db = getDB();
+  if (changes.title || changes.status || changes.owner) {
+    const issue = await db.collection('issues').findOne({ id });
+    Object.assign(issue, changes);
+    validate(issue);
+  }
+  await db.collection('issues').updateOne({ id }, { $set: changes });
+  const savedIssue = await db.collection('issues').findOne({ id });
+  return savedIssue;
+}
+
 async function add(_, { issue }) {
   const db = getDB();
   validate(issue);
@@ -45,4 +57,4 @@ async function add(_, { issue }) {
   return await db.collection('issues').findOne({ _id: result.insertedId });
 }
 
-module.exports = { list, add, get };
+module.exports = { list, add, get, update };
