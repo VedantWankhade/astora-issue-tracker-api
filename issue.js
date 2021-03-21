@@ -38,7 +38,7 @@ function validate(issue) {
 
 async function update(_, { id, changes }) {
   const db = getDB();
-  if (changes.title || changes.status || changes.owner) {
+  if (changes.title || changes.status || changes.owner || changes.description) {
     const issue = await db.collection('issues').findOne({ id });
     Object.assign(issue, changes);
     validate(issue);
