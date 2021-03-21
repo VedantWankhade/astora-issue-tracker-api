@@ -19,6 +19,7 @@ const apiResolvers = {
     // adds issue to the issuesDB list, takes Issue graphQL type
     issueAdd: issue.add,
     issueUpdate: issue.update,
+    issueDelete: issue.delete,
   },
   GraphQLDate,
 };

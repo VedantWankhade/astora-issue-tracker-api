@@ -36,6 +36,19 @@ function validate(issue) {
   }
 }
 
+async function remove(_, { id }) {
+  const db = getDB();
+  const issue = await db.collection('issues').findOne({ id });
+  if (!issue) return false;
+  issue.deleted = new Date();
+  let result = await db.collection('deleted_issues').insertOne(issue);
+  if (result.insertedId) {
+    result = await db.collection('issues').removeOne({ id });
+    return result.deletedCount === 1;
+  }
+  return false;
+}
+
 async function update(_, { id, changes }) {
   const db = getDB();
   if (changes.title || changes.status || changes.owner || changes.description) {
@@ -57,4 +70,4 @@ async function add(_, { issue }) {
   return await db.collection('issues').findOne({ _id: result.insertedId });
 }
 
-module.exports = { list, add, get, update };
+module.exports = { list, add, get, update, delete: remove };
